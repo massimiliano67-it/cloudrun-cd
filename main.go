@@ -1,6 +1,7 @@
 package main
 
 import (
+	"cloudrun/operation"
 	"fmt"
 	"log"
 	"net/http"
@@ -9,11 +10,10 @@ import (
 
 func handler(w http.ResponseWriter, r *http.Request) {
 	log.Print("helloworld: received a request")
-	target := os.Getenv("TARGET")
-	if target == "" {
-		target = "World"
-	}
-	fmt.Fprintf(w, "Hello Massimiliano %s!\n", target)
+
+	operation.Suma(2, 2)
+	fmt.Fprintf(w, "Hello Massimiliano %d!\n", operation.Suma(2, 2))
+
 }
 
 func main() {
